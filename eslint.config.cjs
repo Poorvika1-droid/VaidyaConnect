@@ -1,10 +1,19 @@
-module.exports = {
-  root: true,
-  overrides: [
-    {
-      files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
-      extends: ["next/core-web-vitals", "next/typescript"],
+module.exports = [
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    ignores: [".next", "node_modules"],
+    languageOptions: {
+      parser: require("@typescript-eslint/parser"),
+      parserOptions: {
+        ecmaVersion: 2020,
+        sourceType: "module",
+        ecmaFeatures: { jsx: true },
+        project: "./tsconfig.json",
+      },
     },
-  ],
-  ignorePatterns: [".next", "node_modules"],
-};
+    plugins: {
+      "@typescript-eslint": require("@typescript-eslint/eslint-plugin"),
+    },
+    rules: {},
+  },
+];
